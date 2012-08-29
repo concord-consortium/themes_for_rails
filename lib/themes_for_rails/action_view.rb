@@ -10,27 +10,27 @@ module ThemesForRails
     end
 
     def current_theme_stylesheet_path(asset)
-      base_theme_stylesheet_path(:theme => self.theme_name, :asset => "#{asset}.css")
+      theme_stylesheet_path(asset)
     end
-    
+
     def current_theme_javascript_path(asset)
-      base_theme_javascript_path(:theme => self.theme_name, :asset => "#{asset}.js")
+      theme_javascript_path(asset)
     end
 
     def current_theme_image_path(asset)
-      base_theme_image_path(:theme => self.theme_name, :asset => asset)
+      theme_image_path(asset)
     end
 
     def theme_stylesheet_path(asset, new_theme_name = self.theme_name)
-      base_theme_stylesheet_path(:theme => new_theme_name, :asset => "#{asset}.css")
+      asset_path("#{new_theme_name}/stylesheets/#{asset}.css")
     end
 
     def theme_javascript_path(asset, new_theme_name = self.theme_name)
-      base_theme_javascript_path(:theme => new_theme_name, :asset => "#{asset}.js")
+      asset_path("#{new_theme_name}/javascripts/#{asset}.js")
     end
 
     def theme_image_path(asset, new_theme_name = self.theme_name)
-      base_theme_image_path(:theme => new_theme_name, :asset => asset)
+      image_path("#{new_theme_name}/images/#{asset}")
     end
     
     def theme_image_tag(source, options = {})

@@ -8,7 +8,6 @@ module ThemesForRails
     included do
 
       include ThemesForRails::CommonMethods
-      include ThemesForRails::UrlHelpers
 
     end
 
