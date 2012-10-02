@@ -21,16 +21,25 @@ module ThemesForRails
       theme_image_path(asset)
     end
 
+    def themed_asset_path(themed_asset, unthemed_asset)
+      themed_asset_object = asset_paths.asset_for(themed_asset, nil)
+      if themed_asset_object
+        asset_path(themed_asset_object)
+      else
+        asset_path(unthemed_asset)
+      end
+    end
+
     def theme_stylesheet_path(asset, new_theme_name = self.theme_name)
-      asset_path("#{new_theme_name}/stylesheets/#{asset}.css")
+      themed_asset_path("#{new_theme_name}/stylesheets/#{asset}.css", "#{asset}.css")
     end
 
     def theme_javascript_path(asset, new_theme_name = self.theme_name)
-      asset_path("#{new_theme_name}/javascripts/#{asset}.js")
+      themed_asset_path("#{new_theme_name}/javascripts/#{asset}.js", "#{asset}.js")
     end
 
     def theme_image_path(asset, new_theme_name = self.theme_name)
-      image_path("#{new_theme_name}/images/#{asset}")
+      themed_asset_path("#{new_theme_name}/images/#{asset}", asset)
     end
     
     def theme_image_tag(source, options = {})
